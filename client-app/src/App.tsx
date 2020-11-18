@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+import 'semantic-ui-css/semantic.min.css';
+import { Header, Icon } from 'semantic-ui-react';
 import './App.css';
 import axios from 'axios';
 
@@ -19,16 +20,25 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <ul>
+      <div>
+        <Header as='h2' icon>
+          <Icon name='settings' />
+          Account Settings
+          <Header.Subheader>
+            Manage your account settings and set e-mail preferences.
+    </Header.Subheader>
+        </Header>
+        <ul>
             {this.state.values.map((value: any) => (
               <li>{value.name}</li>
             ))}
           </ul>
-        </header>
       </div>
+    
+
+   
+          
+  
     );
   }
   

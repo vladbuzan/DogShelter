@@ -13,8 +13,8 @@ namespace Persistence
         }
 
         // this will be used for the table name in sqlite
-        public DbSet<Value> Values {get; set; }
-        
+        public DbSet<Value> Values {get; set;}
+        public DbSet<Admin> Admins {get; set;}
         //this will seed the database with some values
         protected override void OnModelCreating(ModelBuilder builder) 
         {
