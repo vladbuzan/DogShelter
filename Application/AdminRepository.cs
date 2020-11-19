@@ -10,18 +10,28 @@ namespace Application
 {
     public class AdminRepository
     {
-        public class Query : IRequest<List<Admin>> {}
-        public class Handler : IRequestHandler<Query, List<Admin>>
+        public class Query : IRequest<int> 
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+        }
+        public class Handler : IRequestHandler<Query, int>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
             {
                 this._context = context;
             }
-            public async Task<List<Admin>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<int> Handle(Query request, CancellationToken cancellationToken)
             {
-                var admins = await _context.Admins.ToListAsync();
-                return admins;
+                var admins = await _context.Admins.SingleOrDefaultAsync(admin => admin.Username.Equals(request.Username) && (admin.Password.Equals(request.Password)));
+                if(admins != null)
+                {
+                    return admins.Id;
+                } else 
+                {
+                    return -1;
+                }
             }
         }
     }

@@ -15,15 +15,9 @@ namespace Persistence
         // this will be used for the table name in sqlite
         public DbSet<Value> Values {get; set;}
         public DbSet<Admin> Admins {get; set;}
-        //this will seed the database with some values
-        protected override void OnModelCreating(ModelBuilder builder) 
-        {
-            builder.Entity<Value>().HasData( 
-                new Value {Id = 1, Name = "Value 101"},
-                new Value {Id = 2, Name = "Value 102"},
-                new Value {Id = 3, Name = "Value 103"}
-            );
-        }
+        public DbSet<Dog> Dogs {get; set;}
+        public DbSet<DogOwner> DogOwners {get; set;}
+       
 
     }
 }

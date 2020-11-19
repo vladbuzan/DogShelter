@@ -17,10 +17,14 @@ namespace API.Controllers
             this._mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<Admin>>> Admins()
+        [HttpGet("{username}/{password}")]
+        public async Task<ActionResult<int>> Admins(string username, string password)
         {
-            return await _mediator.Send(new AdminRepository.Query());
+            return await _mediator.Send(new AdminRepository.Query
+            {
+                Username = username,
+                Password = password,
+            });
         }
     }
 }
