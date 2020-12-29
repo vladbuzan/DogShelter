@@ -14,6 +14,8 @@ using Persistence;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Application;
+using Application.OwnerRepository;
+using Application.MedicRepository;
 
 namespace API
 {
@@ -40,6 +42,8 @@ namespace API
                 });
             });
             services.AddMediatR(typeof(AdminRepository.Handler).Assembly);
+            services.AddMediatR(typeof(ListOwners.Handler).Assembly);
+            services.AddMediatR(typeof(ListMedics.Handler).Assembly);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
