@@ -44,6 +44,8 @@ namespace API
             services.AddMediatR(typeof(AdminRepository.Handler).Assembly);
             services.AddMediatR(typeof(ListOwners.Handler).Assembly);
             services.AddMediatR(typeof(ListMedics.Handler).Assembly);
+            services.AddMediatR(typeof(GetOwnerMedic.Handler).Assembly);
+            services.AddMediatR(typeof(PostOwner.Handler).Assembly);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

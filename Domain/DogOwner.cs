@@ -10,7 +10,6 @@ namespace Domain
         public string Password { get; set; }
         public Medic OwnerMedic { get; set; }
         public Contact OwnerContact { get; set; }
-
-        
     }
+    
 }

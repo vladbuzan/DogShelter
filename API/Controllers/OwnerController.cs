@@ -23,5 +23,11 @@ namespace API.Controllers
         {
             return await _mediator.Send(new ListOwners.Query());
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Unit>> Create(PostOwner.Command command)
+        {
+            return await _mediator.Send(command);
+        }
     }
 }
