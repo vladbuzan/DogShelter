@@ -54,8 +54,10 @@ namespace Application.OwnerRepository
                     OwnerContact = contact,
                 };
 
-                Console.WriteLine("Got here");
-                Console.WriteLine(owner.OwnerContact.Id);
+                _context.Contacts.Add(contact);
+                _context.DogOwners.Add(owner);
+                var changes = await _context.SaveChangesAsync();
+                Console.WriteLine("Number of changes" + changes);
                 return Unit.Value;
             }
         }

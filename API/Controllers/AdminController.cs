@@ -19,7 +19,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{username}/{password}")]
-        public async Task<ActionResult<int>> Admins(string username, string password)
+        public async Task<ActionResult<int>> LogIn(string username, string password)
         {
             return await _mediator.Send(new AdminRepository.Query
             {
@@ -27,5 +27,7 @@ namespace API.Controllers
                 Password = password,
             });
         }
+
+
     }
 }

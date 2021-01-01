@@ -1,10 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Application.OwnerRepository;
-
 namespace API.Controllers
 {
     [Route("api/[controller]")]
@@ -24,10 +24,22 @@ namespace API.Controllers
             return await _mediator.Send(new ListOwners.Query());
         }
 
+        [HttpGet("{username}/{password}")]
+        public async Task<ActionResult<int>> LogIn(string username, string password)
+        {
+            Console.WriteLine("Here");
+            return await _mediator.Send(new ListOwners.LogIn
+            {
+                Username = username,
+                Password = password,
+            });
+        }
+
         [HttpPost]
         public async Task<ActionResult<Unit>> Create(PostOwner.Command command)
         {
             return await _mediator.Send(command);
         }
+
     }
 }

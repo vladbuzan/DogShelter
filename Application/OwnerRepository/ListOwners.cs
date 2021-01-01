@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +16,12 @@ namespace Application.OwnerRepository
             
         }
 
+        public class LogIn : IRequest<int>
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+        }
+
         public class Handler : IRequestHandler<Query, List<DogOwner>>
         {
             private readonly DataContext _context;
@@ -29,5 +36,28 @@ namespace Application.OwnerRepository
                 return owners;
             }
         }
+
+        public class LogInHandler : IRequestHandler<LogIn, int>
+        {
+            private readonly DataContext _context;
+            public LogInHandler(DataContext context) 
+            {
+                this._context = context;
+            }
+
+            public async Task<int> Handle(LogIn request, CancellationToken cancellationToken)
+            {
+                var owner = await _context.DogOwners.SingleOrDefaultAsync(dogOwner => dogOwner.Username.Equals(request.Username) && dogOwner.Password.Equals(request.Password));
+                if(owner != null)
+                {
+                    return owner.Id;
+                } else
+                {
+                    return -1;
+                }
+            }
+        }
+
+
     }
 }
