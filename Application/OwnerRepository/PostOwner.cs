@@ -57,7 +57,6 @@ namespace Application.OwnerRepository
                 _context.Contacts.Add(contact);
                 _context.DogOwners.Add(owner);
                 var changes = await _context.SaveChangesAsync();
-                Console.WriteLine("Number of changes" + changes);
                 return Unit.Value;
             }
         }

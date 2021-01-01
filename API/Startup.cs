@@ -16,6 +16,7 @@ using MediatR;
 using Application;
 using Application.OwnerRepository;
 using Application.MedicRepository;
+using Application.CabinetRepository;
 
 namespace API
 {
@@ -48,6 +49,8 @@ namespace API
             services.AddMediatR(typeof(GetOwnerMedic.Handler).Assembly);
             services.AddMediatR(typeof(PostOwner.Handler).Assembly);
             services.AddMediatR(typeof(UpdateInfo.Handler).Assembly);
+            services.AddMediatR(typeof(ListCabinets.Query).Assembly);
+            services.AddMediatR(typeof(PostCabinet.Handler).Assembly);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
