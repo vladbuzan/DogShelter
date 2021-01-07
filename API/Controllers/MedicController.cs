@@ -26,7 +26,7 @@ namespace API.Controllers
         [HttpGet("{ownerId}")]
         public async Task<ActionResult<Medic>> GetMedicForOwner(int ownerId)
         {
-            return await _mediator.Send(new GetOwnerMedic.Query
+            return await _mediator.Send(new ListMedics.GetByOwner
             {
                 ownerID = ownerId,
             });

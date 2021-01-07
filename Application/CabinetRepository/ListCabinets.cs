@@ -25,7 +25,7 @@ namespace Application.CabinetRepository
 
             public async Task<List<Cabinet>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Cabinets.ToListAsync();
+                return await _context.Cabinets.Include(cabinet => cabinet.CabinetContact).ToListAsync();
             }
         }     
     }

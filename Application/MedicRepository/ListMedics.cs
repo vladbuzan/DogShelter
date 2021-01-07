@@ -15,6 +15,11 @@ namespace Application.MedicRepository
 
         }
 
+        public class GetByOwner : IRequest<Medic>
+        {
+            public int ownerID { get; set; }
+        }
+
         public class Handler : IRequestHandler<Query, List<Medic>>
         {
             private readonly DataContext _context;
@@ -27,6 +32,20 @@ namespace Application.MedicRepository
             {
                 var medics = await _context.Medics.Include(medic => medic.MedicCabinet).ToListAsync();
                 return medics;
+            }
+        }
+
+        public class OwnerMedicHandler : IRequestHandler<GetByOwner, Medic>
+        {
+            private readonly DataContext _context;
+            public OwnerMedicHandler(DataContext context)
+            {
+                this._context = context;
+            }
+            public async Task<Medic> Handle(GetByOwner request, CancellationToken cancellationToken)
+            {
+                 var owner = await _context.DogOwners.Include(dogOwner => dogOwner.OwnerMedic).Include(dogOwner => dogOwner.OwnerMedic.MedicCabinet).SingleOrDefaultAsync(dogOwner => dogOwner.Id == request.ownerID);
+                return owner.OwnerMedic;
             }
         }
     }
