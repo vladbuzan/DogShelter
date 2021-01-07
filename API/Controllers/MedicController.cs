@@ -31,5 +31,15 @@ namespace API.Controllers
                 ownerID = ownerId,
             });
         }
+
+        [HttpGet("{username}/{password}")]
+        public async Task<ActionResult<int>> LogIn(string username, string password)
+        {
+            return await _mediator.Send(new ListMedics.LogIn
+            {
+                Username = username,
+                Password = password,
+            });
+        }
     }
 }

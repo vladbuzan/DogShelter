@@ -56,6 +56,7 @@ namespace API
             services.AddMediatR(typeof(ListDogs.CodeDogHandler).Assembly);
             services.AddMediatR(typeof(DeleteDog.Handler).Assembly);
             services.AddMediatR(typeof(PostDog.Handler).Assembly);
+            services.AddMediatR(typeof(ListMedics.LogInHandler).Assembly);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

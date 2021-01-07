@@ -75,14 +75,14 @@ const LogIn = (props: any) => {
     
   }
   const onSubmitClick = () => {
-    let req : string = `http://localhost:5000/api/${userType}/${userName}/${password}`;
+    let req: string = `http://localhost:5000/api/${userType}/${userName}/${password}`;
     console.log(req);
-    /*axios.get(`http://localhost:5000/admin/${userName}/${password}`).then((response) =>
-    {
-      //let resp = 
-      setCookie("user", {"id" : 1, "usertype" : "admin"}, {"path": "/"});
-    }
-  });*/}
+    axios.get(req).then((response) => {
+      let resp = response.data;
+      console.log(resp);  
+      //setCookie("user", { "id": 1, "usertype": "admin" }, { "path": "/" });
+    })
+  }
 
   return (
     <div className='landingPage'>
