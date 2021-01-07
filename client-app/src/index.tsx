@@ -2,14 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './app/layout/App';
+import MedicPage from './app/layout/MedicPage'
 import { CookiesProvider } from "react-cookie";
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
+
 ReactDOM.render(
   <BrowserRouter>
-      <CookiesProvider>    
-        <App />  
-      </CookiesProvider>,
+    <CookiesProvider>
+      <Route exact path="/">
+        <App />
+      </Route>
+      <Route exact path = "/MedicPage/">
+        <MedicPage/>
+      </Route>
+    </CookiesProvider>,
   </BrowserRouter>,
   document.getElementById('root')
 );

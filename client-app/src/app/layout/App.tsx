@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 import { Form, Checkbox, Button, Radio } from 'semantic-ui-react';
 import './App.css';
 import axios from 'axios';
-import { Console } from 'console';
+import { Redirect , useHistory} from 'react-router-dom';
 
 
 const App = (props: any) => {
@@ -61,7 +61,8 @@ const LogIn = (props: any) => {
   const [password, setPassword] = useState();
   const [userType, setUserType] = useState('admin');
   const [cookies, setCookie] = useCookies(["user"]);
-
+  const [logInSucces, setLogInSucces] = useState(false);
+  let history = useHistory(); 
   const updateUsername = (event: any) => {
     setUserName(event.target.value);
   }
@@ -71,15 +72,21 @@ const LogIn = (props: any) => {
   }
 
   const updateUserType = (event: any, value : any) => {
-    setUserType(value.value);
-    
+    setUserType(value.value); 
   }
+
+  const redirect = () => {
+    history.push("/MedicPage/")
+  }
+
   const onSubmitClick = () => {
     let req: string = `http://localhost:5000/api/${userType}/${userName}/${password}`;
     console.log(req);
     axios.get(req).then((response) => {
       let resp = response.data;
-      console.log(resp);  
+      console.log(resp); 
+      setLogInSucces(true); 
+      redirect();
       //setCookie("user", { "id": 1, "usertype": "admin" }, { "path": "/" });
     })
   }
