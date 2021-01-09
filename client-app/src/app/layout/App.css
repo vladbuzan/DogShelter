@@ -2,6 +2,7 @@
   margin-left: auto;
   margin-right: auto;
 }
+
 .main {
   position: fixed; /* or absolute */
   top: 30%;
@@ -10,7 +11,22 @@
   padding: 2%;
   border-radius: 25px;
 }
+
+.table {
+  margin: 10%;
+}
+
 body {
   background-image: url(https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/slideshows/surprises_about_dogs_and_cats_slideshow/1800x1200_surprises_about_dogs_and_cats_slideshow.jpg);
   background-size: cover; 
+}
+
+.credentials {
+  float: left; /* or absolute */
+  top: 30%;
+  left: 41%;
+  background-color: rgb(245, 239, 236);
+  padding: 2%;
+  border-radius: 25px;
+  margin: 8%;
 }

@@ -8,19 +8,18 @@ import { Redirect , useHistory} from 'react-router-dom';
 
 
 const App = (props: any) => {
+  
   const [shouldShowLogin, setShouldShowLogin] = useState(false);
+  const [cookies, setCookie] = useCookies(["user"]);
   
   const onSignInClicked = () => {
     setShouldShowLogin(true);
-    console.log("this was called");
-    
+    console.log("this was called");    
   }
 
   const onBackClicked = () => {
     setShouldShowLogin(false);
   }
-
-  const [cookies, setCookie] = useCookies(["user"]);
 
   return (
 
@@ -60,8 +59,7 @@ const LogIn = (props: any) => {
   const [userName, setUserName] = useState();
   const [password, setPassword] = useState();
   const [userType, setUserType] = useState('admin');
-  const [cookies, setCookie] = useCookies(["user"]);
-  const [logInSucces, setLogInSucces] = useState(false);
+  const [, setCookie] = useCookies(["user"]);
   let history = useHistory(); 
   const updateUsername = (event: any) => {
     setUserName(event.target.value);
@@ -76,7 +74,15 @@ const LogIn = (props: any) => {
   }
 
   const redirect = () => {
-    history.push("/MedicPage/")
+    if(userType === "medic") {
+      history.push("/MedicPage/");
+    } else if (userType === "admin") {
+      history.push("/AdminPage/")
+    } else if (userType === "owner") {
+      history.push("/OwnerPage/");
+    } else {
+      alert("Error: Invalid user type");
+    }
   }
 
   const onSubmitClick = () => {
@@ -85,8 +91,14 @@ const LogIn = (props: any) => {
     axios.get(req).then((response) => {
       let resp = response.data;
       console.log(resp); 
-      setLogInSucces(true); 
-      redirect();
+      if(resp !== -1){
+        setCookie("user", { "id": resp, "usertype": "userType", "password" : password }, { "path": "/" });
+        redirect();
+      } else {
+        alert("Invalid username or password");
+      }
+       
+      
       //setCookie("user", { "id": 1, "usertype": "admin" }, { "path": "/" });
     })
   }
@@ -128,7 +140,6 @@ const LogIn = (props: any) => {
       </Form>
     </div>
   )
-
 }
 
 export default App;

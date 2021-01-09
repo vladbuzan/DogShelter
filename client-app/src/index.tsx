@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './app/layout/App';
 import MedicPage from './app/layout/MedicPage'
+import AdminPage from './app/layout/AdminPage'
+import OwnerPage from './app/layout/OwnerPage'
 import { CookiesProvider } from "react-cookie";
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route} from 'react-router-dom'
@@ -12,6 +14,12 @@ ReactDOM.render(
     <CookiesProvider>
       <Route exact path="/">
         <App />
+      </Route>
+      <Route exact path = "/AdminPage/">
+        <AdminPage/>
+      </Route>
+      <Route exact path = "/OwnerPage/">
+        <OwnerPage/>
       </Route>
       <Route exact path = "/MedicPage/">
         <MedicPage/>

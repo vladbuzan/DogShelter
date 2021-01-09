@@ -27,7 +27,6 @@ namespace API.Controllers
         [HttpGet("{username}/{password}")]
         public async Task<ActionResult<int>> LogIn(string username, string password)
         {
-            Console.WriteLine("Here");
             return await _mediator.Send(new ListOwners.LogIn
             {
                 Username = username,

@@ -4,14 +4,14 @@ import { useCookies } from "react-cookie";
 import './App.css';
 import axios from 'axios';
 
-const MedicPage = (props: any) =>{
+const AdminPage = (props: any) => {
     return(
         <div>
             <h1>
-                Medic Page
+                Admin Page
             </h1>
         </div>
     )
 }
 
-export default MedicPage;
+export default AdminPage;
