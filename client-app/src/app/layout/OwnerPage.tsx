@@ -5,6 +5,7 @@ import './App.css';
 import axios from 'axios';
 import { Button, Form, Menu, Table } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
+import {withSecurityCheck} from '../features/SecurityCheck';
 
 const OwnerPage = (props: any) => {
   const [activeItem, setActiveItem] = useState("")
@@ -270,4 +271,4 @@ const ViewDogs = (props: any) => {
     </div>
   )
 }
-export default OwnerPage;
+export default withSecurityCheck(OwnerPage);
