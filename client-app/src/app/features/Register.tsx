@@ -11,29 +11,29 @@ const Register = () => {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [cabinetCode, setCabinetCdoe] = useState(0);
-  const [registerSucc, setRegisterSucc] = useState(true);
+  const [registerSucc, setRegisterSucc] = useState(false);
 
   const sendRegisterReq = () => {
     let req = `http://localhost:5000/api/medic`;
     let reqBody = {
-      "username" : username,
-      "password" : password,
-      "email" : email,
-      "firstName" : firstName,
-      "lastName" : lastName,
-      "code" :  cabinetCode
+      "username": username,
+      "password": password,
+      "email": email,
+      "firstName": firstName,
+      "lastName": lastName,
+      "code": cabinetCode
     };
 
     axios.post(req, reqBody).then((response) => {
-      if(response.data === 1) {
+      if (response.data === 1) {
         setRegisterSucc(true);
         return;
       }
-      if(response.data === -1) {
+      if (response.data === -1) {
         alert("Invalid cabinet code");
         return;
       }
-      if(response.data === -2) {
+      if (response.data === -2) {
         alert("Couldn't save account into the database");
         return;
       }
@@ -42,27 +42,27 @@ const Register = () => {
   }
 
   const onSubmitClick = () => {
-    if(username === undefined || username ===""){
+    if (username === undefined || username === "") {
       alert("Please fill in your username");
       return;
     }
-    if(email === undefined || email === "") {
+    if (email === undefined || email === "") {
       alert("Please fill in your email address");
       return;
     }
-    if(password === undefined || password === "") {
+    if (password === undefined || password === "") {
       alert("Please fill in your password");
       return;
     }
-    if(firstName === undefined || firstName === "") {
+    if (firstName === undefined || firstName === "") {
       alert("Please fill in your first name");
       return;
     }
-    if(lastName === undefined || lastName === "") {
+    if (lastName === undefined || lastName === "") {
       alert("Please fill in your last name");
       return;
     }
-    if(cabinetCode < 0 || cabinetCode != parseInt(String(cabinetCode), 10)) {
+    if (cabinetCode < 0 || cabinetCode != parseInt(String(cabinetCode), 10)) {
       alert("Invalid cabinet code");
       return;
     }
@@ -73,7 +73,7 @@ const Register = () => {
 
   return (
     <div className='landingPage'>
-      {registerSucc? <p>Registered successfully! </p> : <Form>
+      {registerSucc ? <p>Registered successfully! </p> : <Form>
         <Form.Field>
           <label>Username</label>
           <input placeholder='Username' value={username} onChange={(event: any) => {

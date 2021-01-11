@@ -10,8 +10,9 @@ const LogIn = (props: any) => {
     const [userName, setUserName] = useState();
     const [password, setPassword] = useState();
     const [userType, setUserType] = useState('admin');
-    const [, setCookie] = useCookies(["user"]);
-    let history = useHistory();
+    const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+    const history = useHistory();
+    
     const updateUsername = (event: any) => {
         setUserName(event.target.value);
     }
@@ -43,7 +44,10 @@ const LogIn = (props: any) => {
             let resp = response.data;
             console.log(resp);
             if (resp !== -1) {
-                setCookie("user", { "id": resp, "usertype": "userType", "password": password }, { "path": "/" });
+                if(cookies.user !== undefined){
+                     removeCookie("user", { "path": "/" });
+                }
+                setCookie("user", { "id": resp, "password": password }, { "path": "/" });
                 redirect();
             } else {
                 alert("Invalid username or password");

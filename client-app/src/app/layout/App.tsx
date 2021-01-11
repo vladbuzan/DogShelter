@@ -30,7 +30,7 @@ const App = (props: any) => {
   return (
 
     <div className='landingPage'>
-      <div className='main'>
+      <div className='login'>
         <h1>
           Online Dog Shelter
         </h1>

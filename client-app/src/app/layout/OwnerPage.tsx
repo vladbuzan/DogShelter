@@ -63,22 +63,19 @@ const OwnerPage = (props: any) => {
         <Menu.Item
           name="cabinets"
           active={activeItem === "cabinets"}
-          onClick={onCabinetsClicked}
-        >
+          onClick={onCabinetsClicked}>
           Cabinets
         </Menu.Item>
         <Menu.Item
           name='credentials'
           active={activeItem === 'credentials'}
-          onClick={onCredentialsClicked}
-        >
+          onClick={onCredentialsClicked}>
           Credentials
         </Menu.Item>
         <Menu.Item
           name='dogs'
           active={activeItem === `dogs`}
-          onClick={onDogsClciked}
-        >
+          onClick={onDogsClciked}>
           Dogs
         </Menu.Item>
         <Menu.Item

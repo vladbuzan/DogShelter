@@ -42,7 +42,7 @@ namespace Application.DogRepository
             }
             public async Task<Dog> Handle(QueryByCode request, CancellationToken cancellationToken)
             {
-                return await _context.Dogs.Include(Dog => Dog.Owner.OwnerContact).SingleOrDefaultAsync(Dog => Dog.Code == request.Code);
+                return await _context.Dogs.Include(Dog => Dog.Owner).Include(Dog => Dog.Owner.OwnerContact).SingleOrDefaultAsync(Dog => Dog.Code == request.Code);
             }
         }
     }
