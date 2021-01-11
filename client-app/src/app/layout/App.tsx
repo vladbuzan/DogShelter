@@ -10,6 +10,7 @@ import { Redirect , useHistory} from 'react-router-dom';
 const App = (props: any) => {
   
   const [shouldShowLogin, setShouldShowLogin] = useState(false);
+  const [shouldShowRegister, setShouldShowRegister] = useState(false);
   const [cookies, setCookie] = useCookies(["user"]);
   
   const onSignInClicked = () => {
@@ -17,8 +18,13 @@ const App = (props: any) => {
     console.log("this was called");    
   }
 
+  const onRegisterClicked = () => {
+    setShouldShowRegister(true);
+  }
+
   const onBackClicked = () => {
     setShouldShowLogin(false);
+    setShouldShowRegister(false);
   }
 
   return (
@@ -29,11 +35,12 @@ const App = (props: any) => {
           Online Dog Shelter
         </h1>
         {shouldShowLogin ? <LogIn userType="admin" /> : undefined}
+        {shouldShowRegister ? <Register/> : undefined}
         {shouldShowLogin ? <br /> : undefined}
         {shouldShowLogin ? <Button secondary onClick=
           {onBackClicked} >Back</Button> : undefined}
         {shouldShowLogin ? undefined : <Button content='Sign in' primary onClick={onSignInClicked} />}
-        {shouldShowLogin ? undefined : <Button content='Register' secondary />}
+        {shouldShowRegister ? undefined : <Button content='Register' secondary onClick={onRegisterClicked} />}
       </div>
     </div>
   ); 
@@ -137,6 +144,46 @@ const LogIn = (props: any) => {
             onChange={updateUserType}
           />
           <Button onClick={onSubmitClick} type='LogIn'>Submit</Button>
+      </Form>
+    </div>
+  )
+}
+
+const Register = () => {
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [cabinetCode, setCabinetCdoe] = useState();
+
+
+  return (
+    <div className='landingPage'>
+      <Form>
+        <Form.Field>
+          <label>Username</label>
+          <input placeholder='Username' value={username} onChange={(event: any) =>{
+            setUsername(event.target.value);
+          }} />
+        </Form.Field>
+        <Form.Field>
+          <label>Email</label>
+          <input placeholder='Email' value={email} onChange={(event:any) => {
+            setPassword(event.target.value);
+          }} />
+        </Form.Field>
+        <Form.Field>
+          <label>Password</label>
+          <input type='password' placeholder='Last Name' value={password} onChange={(event:any) => {
+            setLastName(event.target.value);
+          }} />
+        </Form.Field>
+        <label>User type</label>
+
+          <Button onClick={() => {
+            
+          }} type='LogIn'>Submit</Button>
       </Form>
     </div>
   )
