@@ -41,5 +41,11 @@ namespace API.Controllers
                 Password = password,
             });
         }
+
+        [HttpPost]
+        public async Task<ActionResult<int>> Register(PostMedic.Command command)
+        {
+            return await _mediator.Send(command);
+        }
     }
 }
