@@ -58,6 +58,7 @@ namespace API
             services.AddMediatR(typeof(PostDog.Handler).Assembly);
             services.AddMediatR(typeof(ListMedics.LogInHandler).Assembly);
             services.AddMediatR(typeof(PostMedic.Handler).Assembly);
+            services.AddMediatR(typeof(ListOwners.ListByMedicHandler).Assembly);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

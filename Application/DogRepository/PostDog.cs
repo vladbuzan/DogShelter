@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Domain;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 namespace Application.DogRepository
 {
@@ -9,7 +10,7 @@ namespace Application.DogRepository
     {
         public class Command : IRequest
         {
-            public int OwnerID { get; set; }
+            public string Username { get; set; }
             public string Name { get; set; }
             public int Code { get; set; }
         }
@@ -24,7 +25,7 @@ namespace Application.DogRepository
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var owner = await _context.DogOwners.FindAsync(request.OwnerID);
+                var owner = await _context.DogOwners.SingleOrDefaultAsync(Owner => Owner.Username.Equals(request.Username));
                 if(owner == null)
                 {
                     throw new System.Exception("Owner not found");

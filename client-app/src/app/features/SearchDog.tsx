@@ -13,6 +13,7 @@ const SearchDog = () => {
     const [cookies] = useCookies(["user"]);
     const [dog, setDog] = useState();
     
+
     const onSearchClicked = () => {
         if (dogCode < 0 || dogCode != parseInt(String(dogCode), 10)) {
             alert("Invalid dog code");

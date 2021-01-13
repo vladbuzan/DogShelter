@@ -21,6 +21,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<DogOwner>>> List()
         {
+            Console.WriteLine("This was called");
             return await _mediator.Send(new ListOwners.Query());
         }
 
@@ -31,6 +32,14 @@ namespace API.Controllers
             {
                 Username = username,
                 Password = password,
+            });
+        }
+
+        [HttpGet("{medicID}")]
+        public async Task<ActionResult<List<DogOwner>>> GetByMedic(int medicID)
+        {
+            return await _mediator.Send(new ListOwners.ListByMedic{
+                MedicID = medicID,
             });
         }
 

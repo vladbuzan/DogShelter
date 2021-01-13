@@ -42,3 +42,16 @@ body {
   border-radius: 25px;
   margin: 8%;
 }
+
+.registerOwner {
+   /* or absolute */
+  top: 30%;
+  left: 41%;
+  background-color: rgb(245, 239, 236);
+  padding: 2%;
+  border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 60%;
+  width: 45%;
+}

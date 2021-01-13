@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain;
@@ -22,6 +23,10 @@ namespace Application.OwnerRepository
             public string Password { get; set; }
         }
 
+        public class ListByMedic : IRequest<List<DogOwner>>
+        {
+            public int MedicID { get; set; }
+        }
         public class Handler : IRequestHandler<Query, List<DogOwner>>
         {
             private readonly DataContext _context;
@@ -58,6 +63,20 @@ namespace Application.OwnerRepository
             }
         }
 
-
+        public class ListByMedicHandler : IRequestHandler<ListByMedic, List<DogOwner>>
+        {
+            private readonly DataContext _context;
+            public ListByMedicHandler(DataContext context)
+            {
+                this._context = context;
+            }
+            public async Task<List<DogOwner>> Handle(ListByMedic request, CancellationToken cancellationToken)
+            {
+                var ret = await _context.DogOwners.Where(owner => owner.OwnerMedic.Id == request.MedicID).ToListAsync();
+                return ret;
+            }
+        }
     }
+
+    
 }
